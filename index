@@ -1,0 +1,64 @@
+    public static void writeStack (String filename, Deque list) throws IOException{
+        BufferedWriter outputWriter = null;
+        outputWriter = new BufferedWriter(new FileWriter(filename));
+        Object x[] = list.toArray();
+        for (int i = 0; i < x.length; i++) {
+          outputWriter.write(x[i]+"");
+
+          outputWriter.newLine();
+        }
+        outputWriter.flush();  
+        outputWriter.close();  
+    }
+    
+    public static Deque readStack(String filename) throws FileNotFoundException, IOException{
+        
+        BufferedReader bufReader = new BufferedReader(new FileReader(filename));
+        Deque<Double> listOfLines = new LinkedList<>();
+
+        String line = bufReader.readLine();
+        while (line != null) {
+          Double element = Double.parseDouble(line);
+          listOfLines.add(element);
+          line = bufReader.readLine();
+        }
+        bufReader.close();
+        return listOfLines;
+    }
+    
+    public static void writeRegister (String filename, Register[] register) throws IOException{
+        BufferedWriter outputWriter = null;
+        outputWriter = new BufferedWriter(new FileWriter(filename));
+        
+        for (int i = 0; i < register.length; i++) {
+          outputWriter.write(register[i].getName()+" "+register[i].getValue()+" "+register[i].getLabel());
+ 
+          outputWriter.newLine();
+        }
+        outputWriter.flush();  
+        outputWriter.close();  
+    }
+    
+    public  Register[] readRegister(String filename) throws FileNotFoundException, IOException{
+        Register[] temps = new Register[ RPNForm.calc.NUMBER_OF_REGISTERS ];
+        try {
+            Scanner scanner = new Scanner(new File(filename));
+            int i = 0;
+            while(scanner.hasNextLine()){
+                //take the first line
+                Scanner result = new Scanner( scanner.nextLine() );
+                
+                String name = result.next();
+                double value = result.nextDouble();
+                String label = result.next();
+                
+                Register temp = new Register(value , label , name);
+                temps[i] = temp;
+                i++;
+            }
+            scanner.close();
+        }
+        catch (FileNotFoundException e) {}
+        
+        return temps;
+    }
