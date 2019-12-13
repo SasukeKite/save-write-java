@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Study Table</title>
+</head>
+<style>
+   th , td{
+      border: 1px solid #333;
+   }
+   .Chemistry{
+      background: green;
+   }
+   .Math{
+      background: lightgreen;
+   }
+   .Physics{
+      background: lightslategray;
+   }
+   .Biology{
+      background: mistyrose;
+   }
+   .English{
+      background: yellow;
+   }
+   h4{
+      margin: 8px 0px;;
+   }
+   p{
+      margin:3px 0px;
+   }
+   td{
+      height: 78px;;
+   }
+   tr{
+      border: 1px solid #333;
+   }
+</style>
+<body>
+   <div style="overflow: hidden;">
+      <p style="float: left; font-weight: bold; font-size:18px;">TimeTable</p>
+      <div style="float: right;">
+         <p style="display: inline-block;margin-right: 20px; font-weight: bold; font-size:18px" >Add Class</p>
+         <p style="display: inline-block;font-weight: bold; font-size:18px ">Add Time</p>
+      </div>
+   </div>
+   <table style="width: 100%;">
+      <tr>
+         <th >Days</th>
+         <th>
+            <h4 style="text-align: center;">1</h4>
+            <p>08:00AM-09:00AM</p>
+         </th>
+         <th>
+            <h4 style="text-align: center;">2</h4>
+            <p>09:00AM-10:00AM</p>
+         </th>
+         <th>
+            <h4 style="text-align: center;">3</h4>
+            <p>10:30AM-11:00AM</p>
+         </th>
+         <th>
+            <h4 style="text-align: center;">4</h4>
+            <p>02:00PM-03:00PM</p>
+         </th>
+         <th>
+            <h4 style="text-align: center;">5</h4>
+            <p>12:00PM-01:00PM</p>
+         </th>
+      </tr>
+      <tr>
+         <th>Mon</th>
+         <td class="Chemistry">
+            <p style="text-align: left;">Room2</p>
+            <p style="text-align: center;">Chemistry</p>
+            <p style="text-align: right;">Mr.Grover</p>
+         </td>
+         <td class="Math">
+            <p style="text-align: left;">Room2</p>
+            <p style="text-align: center;">Math</p>
+            <p style="text-align: right;">Mr.Hardy</p>
+         </td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>Tue</th>
+         <td class="English">
+            <p style="text-align: left;">Room1</p>
+            <p style="text-align: center;">English</p>
+            <p style="text-align: right;">Mr.Alden</p>
+         </td>
+         <td></td>
+         <td class="Physics">
+            <p style="text-align: left;">Room2</p>
+            <p style="text-align: center;">Physics</p>
+            <p style="text-align: right;">Mr.Jhon</p>
+         </td>
+         <td class="Chemistry">
+            <p style="text-align: left;">Room1</p>
+            <p style="text-align: center;">Chemistry</p>
+            <p style="text-align: right;">Mr.Grover</p>
+         </td>
+         <td class="Biology">
+            <p style="text-align: left;">Room2</p>
+            <p style="text-align: center;">Biology</p>
+            <p style="text-align: right;">Mr.Luther</p>
+         </td>
+      </tr>
+      <tr>
+         <th>Wed</th>
+         <td></td>
+         <td class="Math">
+            <p style="text-align: left;">Room3</p>
+            <p style="text-align: center;">Math</p>
+            <p style="text-align: right;">Mr.Hardy</p>
+         </td>
+         <td></td>
+         <td class="English">
+            <p style="text-align: left;">Room5</p>
+            <p style="text-align: center;">English</p>
+            <p style="text-align: right;">Mr.Alden</p>
+         </td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>Thu</th>
+         <td class="Chemistry">
+            <p style="text-align: left;">Room7</p>
+            <p style="text-align: center;">Chemistry</p>
+            <p style="text-align: right;">Mr.Grover</p>
+         </td>
+         <td class="Physics">
+            <p style="text-align: left;">Room7</p>
+            <p style="text-align: center;">Physics</p>
+            <p style="text-align: right;">Mr.Jhon</p>
+         </td>
+         <td class="Math">
+            <p style="text-align: left;">Room4</p>
+            <p style="text-align: center;">Math</p>
+            <p style="text-align: right;">Mr.Hardy</p>
+         </td>
+         <td></td>
+         <td class="Biology">
+            <p style="text-align: left;">Room5</p>
+            <p style="text-align: center;">Biology</p>
+            <p style="text-align: right;">Mr.Luther</p>
+         </td>
+      </tr>
+      <tr>
+         <th>Fri</th>
+         <td></td>
+         <td class="English">
+            <p style="text-align: left;">Room2</p>
+            <p style="text-align: center;">English</p>
+            <p style="text-align: right;">Mr.Alden</p>
+         </td>
+         <td></td>
+         <td class="Physics">
+            <p style="text-align: left;">Room7</p>
+            <p style="text-align: center;">Physics</p>
+            <p style="text-align: right;">Mr.Jhon</p>
+         </td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>sat</th>
+         <td></td>
+         <td class="Biology">
+            <p style="text-align: left;">Room6</p>
+            <p style="text-align: center;">Biology</p>
+            <p style="text-align: right;">Mr.Luther</p>
+         </td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>sun</th>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+   </table>
+</body>
+</html>
