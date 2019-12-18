@@ -1,0 +1,206 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*===============Define Book Functions==========*/
+
+void addBook(int [] , char [][20] , char [][20] , int [] , int [] , int []);
+void printBooks(int [] , char [][20] , char [][20] , int [] , int [] , int []);
+
+//int searchBook(int , int[]);
+//void issueBook(int , int);
+
+int countBook = 0;
+
+/*===============Define Memeber Functions=======*/
+void addMemmber(int [] , char[][20] , char [][20], char[][20]);
+void printMemmber(int [] , char[][20] , char[][20] , char[][20] , int[] , char[][20] , char[][20]);
+
+//int searchMemmber(int);
+
+int countMemmber = 0;
+/*==============================================*/
+
+int main(){
+	int ch;
+	//Book Variables
+	int BookCode[100] , BookPrice[100] , BookCounts[100] , BooksInLibrary[100];
+	char BookName[100][20] , BookAuther[100][20];
+	//Memmber Variables
+	int MemmberCode[100]  , MBookCode[100];
+	char MemmberName[100][20] , MemmberPhone[100][20] , MemmberAddress[100][20] , MBookName[100][20] , Return[100][20] ;
+	//Variables used in issue Function
+//	int searchCodeBook , searchCodeMemmber;
+	
+	do{
+		printf("\n 1-introduction");
+		printf("\n 2-add new book");
+		printf("\n 3-add new Memmber");
+		printf("\n 4-issue book");
+		printf("\n 5-return book");
+		printf("\n 6-list of books");
+		printf("\n 7-list of Memmbers");
+		printf("\n 8-edit");
+		printf("\n 0-quit \n");
+		scanf("%d",&ch);
+		
+		if(ch == 1){
+			printf("==================================================\n");
+			printf("\nWelcome to Project\nBook Library\nThis Project has facility of maintaining records of Books and Memebers\nTHE END\n");
+			printf("\n==================================================\n");
+		}else if(ch == 2){	
+			if(countBook == 100){
+				printf("Max count for books in Library is 100 and we already have 100 books");
+			}
+			else{
+				addBook(BookCode , BookAuther , BookName , BookPrice , BookCounts , BooksInLibrary);
+			}
+		}else if(ch == 3){
+				
+			if(countMemmber == 100){
+				printf("Max count for memmbers in Library is 100 and we already have 100 memmbers");
+			}
+			else{
+				addMemmber(MemmberCode , MemmberName , MemmberPhone , MemmberAddress);
+			}
+		}else if(ch == 4){
+//				system("cls");
+//				printf("\nEnter Book Code ");
+//				scanf("%d" , searchCodeBook);
+//				int bookId = searchBook(searchCodeBook , BookCode);
+//				printf("\n bookId = %d" , bookId);
+//				
+//				if(bookId != NULL){
+//					printf("\n you search in this book");
+//					printf("\n BookName = %s" , BookName[bookId]);
+//					printf("\n BookAuther = %s" , BookAuther[bookId]);
+//					printf("\n BookCode = %d" , BookCode[bookId] );
+//				}else{
+//					printf("\n your enter invalid book code there isn't any book in this code");
+//				}	
+
+		}
+		else if(ch == 6){
+			printBooks(BookCode , BookAuther , BookName , BookPrice , BookCounts , BooksInLibrary);
+		}else if(ch == 7){
+				printMemmber(MemmberCode , MemmberName , MemmberPhone , MemmberAddress , MBookCode , MBookName , Return );
+		}else if(ch == 0){
+			exit(0);
+		}else{
+			exit(0);
+		}
+		
+	}while(ch != 8);
+}
+
+void addBook(int BookCode[] , char BookAuther[][20] , char BookName[][20] , int  BookPrice[] , int  BookCounts[] , int  BooksInLibrary[]){
+	char ch;
+	do{
+		system("cls");
+		printf("\nEnter Book Code = ");
+		scanf("%d" , &BookCode[countBook]);
+		printf("\nEnter Boook Auther = ");
+		scanf("%s" , BookAuther[countBook]);
+		printf("\nEnter Boook Name = ");
+		scanf("%s" , BookName[countBook]);
+		printf("\nEnter Book Price = " );
+		scanf("%d" , &BookPrice[countBook]);
+		printf("\nEnter Count of books = ");
+		scanf("%d" , &BookCounts[countBook]);
+		BooksInLibrary[countBook] = BookCounts[countBook];
+		countBook++;
+		fflush(stdin);
+		printf("\nAdd new book < y / n >");
+		scanf("%c" , &ch);
+	}while(ch == 'y' || ch == 'Y');
+}
+
+void addMemmber(int MemmberCode[] , char MemmberName[][20] ,  char MemmberPhone[][20] ,char MemmberAdress[][20]){
+	char ch;
+	do{
+		system("cls");
+		printf("\nEnter Memmber Code = ");
+		scanf("%d" , &MemmberCode[countMemmber]);
+		printf("\nEnter Memmber Name = ");
+		scanf("%s" , MemmberName[countMemmber]);
+		printf("\nEnter Memmber Phone = ");
+		scanf("%s" , MemmberPhone[countMemmber]);
+		printf("\nEnter Memmber Adress = " );
+		scanf("%s" , &MemmberAdress[countMemmber]);
+		countMemmber++;
+		fflush(stdin);
+		printf("\nDo you want to save < y / n >");
+		scanf("%c" , &ch);
+	}while(ch == 'y' || ch == 'Y');
+	
+}
+
+void printBooks(int BookCode[] , char BookAuther[][20] , char BookName[][20] , int  BookPrice[] , int  BookCounts[] , int  BooksInLibrary[]){
+	system("cls");
+	for(int i = 0  ; i < countBook ; i++){
+		printf("\n==============Book N.O %d ================\n" , i+1);
+		printf("\nBook Code = %d"  , BookCode[i]);
+		printf("\nBook Auther = %s"  ,BookAuther[i]);
+		printf("\nBook Name = %s"  ,BookName[i]);
+		printf("\nBook Price = %d"  ,BookPrice[i]);
+		printf("\nCount of books = %d"  ,BookCounts[i]);
+		printf("\nBooks in library = %d \n" ,BooksInLibrary[i]);
+	}
+}
+void printMemmber(int MemmberCode[] , char MemmberName[][20]  , char  MemmberPhone[][20] , char MemmberAdress[][20] , int MBookCode[] , char MBookName[][20] , char Return[][20]){
+	system("cls");
+	for(int i = 0  ; i < countMemmber ; i++){
+		printf("\n==============Memmber N.O %d ================\n" , i+1);
+		printf("\nMemmber Code = %d"  , MemmberCode[i]);
+		printf("\nMemmber Name = %s"  ,MemmberName[i]);
+		printf("\nMemmber Phone = %s"  ,MemmberPhone[i]);
+		printf("\nMemmber Adress = %s"  ,MemmberAdress[i]);
+		if(MBookCode[i] != NULL){
+			printf("\nBook Code = %d"  , MBookCode[i]);
+			printf("\nBook Name = %s"  ,MBookName[i]);
+			printf("\nReturn Date = %d"  ,Return[i]);
+		}
+	}
+}
+
+//int searchBook(int code , int BookCode[] ){
+//	printf("%d" , code);
+//	for(int i =0 ; i< countBook ;i++){
+//		if(code == BookCode[i]){
+//			return i;
+//		}else{
+//			return NULL;
+//		}
+//	}
+//}
+
+//int searchMemmber(int code){
+//	for(int i =0 ; i< countMemmber ;i++){
+//		if(code == MemmberCode[i]){
+//			return i;
+//		}else{
+//			return NULL;
+//		}
+//	}
+//}
+
+//void issueBook(searchCodeBook , searchCodeMemmber){
+//	printf("\nEnter Book Code");
+//	scanf("%d" , searchCodeBook)
+//	int bookId = searchBook(searchCodeBook , searchBookCode);
+//	if(bookCode != NULL){
+//		printf("\n you search in this book");
+//		printf("\n BookName = %s" , BookName[bookId]);
+//		printf("\n BookAuther = %s" , BookAuther[bookId]);
+//		printf("\n BookCode = %d" , BookCode[bookId] );
+//	}else{
+//		printf("\n your enter invalid book code there isn't any book in this code");
+//	}	
+//}
+
+
+
+
+
+
+
