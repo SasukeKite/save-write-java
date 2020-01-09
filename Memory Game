@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+   
+      @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+      *{
+         box-sizing: border-box;
+         padding: 0;
+         margin: 0;
+      }
+      body {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.4em;
+      color: #333;
+      background: #eee;
+      }
+
+      input,
+      button {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 300;
+      font-size: 16px;
+      border: 0;
+      padding: 3px 5px;
+      border-radius: 3px;
+      }
+
+      h1 {
+      margin: 0.5em 0 1em 0;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #096AA3;
+      }
+
+      h2, h3 {
+      font-weight: bold;
+      }
+
+      p {
+      margin-bottom: 1em;
+      }
+
+      .animation {
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      }
+
+      .wrapper {
+         background: 0;
+         width: 100vw;
+         height: 100vh;
+         max-width: 100%;
+         max-height: 100%;
+         overflow: hidden;
+         display: flex;
+         flex-flow: wrap;
+         justify-content: space-around;
+         background: #fff;
+         align-items: center;
+      }
+
+      .container {
+         width: 640px;
+         height: 425px;
+         background: #fff;
+      
+      
+      /* Set the depth of the elements */
+      -webkit-perspective: 800px;
+      -moz-perspective: 800px;
+      -o-perspective: 800px;
+      perspective: 800px;
+      }
+
+      .container:first-child {
+      margin-left: 0;
+      }
+
+      .card {
+         width: 100%;
+         height: 100%;
+         /* position: absolute; */
+         cursor: pointer;
+         
+         
+         /* Set the transition effects */
+         -webkit-transition: -webkit-transform 0.4s;
+         -moz-transition: -moz-transform 0.4s;
+         -o-transition: -o-transform 0.4s;
+         transition: transform 0.4s;
+         -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+         transform-style: preserve-3d;
+      }
+
+      .card.flipped {
+         -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+         -o-transform: rotateY( 180deg );
+         transform: rotateY( 180deg );
+      }
+
+      .card .front,
+      .card .back {
+         display: block;
+         height: 100%;
+         width: 100%;
+         line-height: 260px;
+         color: white;
+         text-align: center;
+         font-size: 4em;
+         position: absolute;
+         -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+         -o-backface-visibility: hidden;
+         backface-visibility: hidden;
+      
+      box-shadow: 3px 5px 20px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      .card .back {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      
+      }
+
+      .card .back img{
+         max-width: 100%;
+         max-height: 100%;
+         margin: auto;
+      }
+
+      .formItem:first-child {
+      margin-top: 20px;
+      }
+
+      .card .back label {
+      display: inline-block;
+      width: 70px;
+      text-align: left;
+      }
+
+      .card .front {
+      background: #222222;
+      }
+
+      .card .back {
+         /* background: #444444; */
+         -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+         -o-transform: rotateY( 180deg );
+         transform: rotateY( 180deg );
+      }
+
+      /* .container:first-child .card .front {
+      background: #228653;
+      }
+
+      .container:first-child .card .back {
+         background: #007539;
+      } */
+
+
+   </style>
+</head>
+<body>
+
+
+   <div class="wrapper cards">
+
+    </div>
+   <script src="jquery-1.11.1.min.js"></script>
+   <script>
+
+      images = ['11.jpg' , '22.jpg' , '33.jpg' , '44.jpg' , '55.jpg' , '66.jpg'];
+      level = 1;  
+         
+      function orderCardDeopendLevel(level){
+         //level 1 = 2 elements 4 card , level 2 = 3 element 6 cards
+         if(level > (images.length  - 1)){
+            level = images.length - 1;
+         }
+         //file count images depend on count
+         let levelElements = images.slice(0 , level+1); //for level 1 that mean 2 elemenet and 4 card 
+         let levelCards = levelElements.concat(levelElements);
+         //shuffle cards
+         let randomCard = [];
+         let randNum = [];
+         while(randomCard.length != levelCards.length){
+            let rand = Math.floor(Math.random() * levelCards.length);
+            
+            if(randNum.indexOf(rand) == -1){
+               randomCard.push( levelCards[rand] );
+               randNum.push(rand);
+            }
+         }
+         let row = 0;
+         let column = 0;
+         if(randomCard.length == 4){
+            row    = 2;
+            column = 2; 
+         }else if(randomCard.length == 6){
+            if( $(".wrapper.cards").width() > $(".wrapper.cards").height() ){
+               row = 2;
+               column = 3;
+            }else{
+               row = 3;
+               column = 2;               
+            }
+         }else if(randomCard.length == 8){
+            if( $(".wrapper.cards").width() > $(".wrapper.cards").height() ){
+               row = 2;
+               column = 4;
+            }else{
+               row = 4;
+               column = 2;               
+            }
+         }else if(randomCard.length == 10){
+            if( $(".wrapper.cards").width() > $(".wrapper.cards").height() ){
+               row = 2;
+               column = 5;
+            }else{
+               row = 5;
+               column = 2;               
+            }
+         }
+         else if(randomCard.length == 12){
+            if( $(".wrapper.cards").width() > $(".wrapper.cards").height() ){
+               row = 3;
+               column = 4;
+            }else{
+               row = 4;
+               column = 3;               
+            }
+         }
+         Cwidth =  $(".wrapper.cards").width() / column;
+         CHeight =  $(".wrapper.cards").height() / row;
+
+         $(".wrapper.cards").html('');
+         for(i = 0 ; i < randomCard.length ; i++){
+            $(".wrapper.cards").append(`
+            <div class="container" style="width:${Cwidth}px;height:${CHeight}px;">
+                  <div class="card" data-id="${i}" data-val="${randomCard[i]}">
+                     <div class="front"></div>
+                     <div class="back">
+                        <img src="${randomCard[i]}">
+                     </div>
+                  </div>
+               </div>
+            `);
+         }
+      }
+
+      orderCardDeopendLevel(level);  //2 level = 3 elements = 6 cards
+      secondClick = false;
+      id = false;
+      val = '';
+      values = [];
+      atime = 0;
+      btime = 0;
+      $('body').on("click" , ".card" , function(){
+         if(values.indexOf( $(this).data('val') ) == -1 && btime == atime ){   //don't click on cards that we already flipped and win            
+            $(this).toggleClass('flipped');
+            btime++;
+            setTimeout(() => {         
+               if(secondClick){
+                  if(id != $(this).data('id')){
+                     if(val == $(this).data('val')){
+                        values.push(val); //or values.push($(this).data('val'));
+                        // Finssh all cards and move to next level;
+                        if(values.length == level+1 ){   //level 2 = 3 elements = 6 cards
+                           level = level + 1 ;
+                           secondClick = false;
+                           id = null;
+                           val = '';
+                           values = [];
+                           // $(".card").on('click');
+                           $(".wrapper.cards").html('');
+                           $(".wrapper.cards").append(`<h1> Are you ready to next leve ok let's go  </h1>`);
+                           setTimeout(() => {   //wait 0.5s just to show message
+                              orderCardDeopendLevel(level);
+                           }, 2000);
+                        }
+                     }else{ //flip cards if not match
+                           $(".card[data-id='"+id+"']").toggleClass("flipped");  //flip old card
+                           $(this).toggleClass("flipped");  //flip new card
+                     }
+                  }
+                  //intalize variables
+                  secondClick = false;
+                  id = null;
+                  val = '';
+               }else{
+                  id = $(this).data('id');
+                  val = $(this).data('val');
+                  secondClick = true;
+               }
+               atime++;
+            }, 1000);
+         }
+      });
+   </script>
+</body>
+</html>
